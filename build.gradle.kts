@@ -95,6 +95,19 @@ testing {
             }
         }
 
+        register<JvmTestSuite>("integrationTest") {
+            dependencies {
+                implementation(project())
+                implementation(gradleTestKit())
+            }
+
+            targets.configureEach {
+                testTask.configure {
+                    shouldRunAfter(test)
+                }
+            }
+        }
+
         register<JvmTestSuite>("functionalTest") {
             dependencies {
                 implementation(gradleTestKit())
@@ -143,9 +156,10 @@ tasks {
         }
     }
 
+    @Suppress("UnstableApiUsage")
     check {
-        @Suppress("UnstableApiUsage")
         dependsOn(testing.suites.named("functionalTest"))
+        dependsOn(testing.suites.named("integrationTest"))
     }
 
     validatePlugins {
