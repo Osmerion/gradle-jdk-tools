@@ -1,0 +1,33 @@
+[versions]
+binary-compatibility-validator = "0.16.3"
+gradle-toolchain-switches = "0.3.0"
+junit = "5.11.3"
+kotlin = "2.1.0"
+nokee-gradle-plugin-dev = "1.6.10"
+plugin-publish = "1.3.0"
+
+
+[libraries]
+# org.junit - JUnit
+junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
+junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit" }
+junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit" }
+junit-jupiter-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit" }
+
+
+[plugins]
+# com.gradle.plugin-publish - plugin-publish
+plugin-publish = { id = "com.gradle.plugin-publish", version.ref = "plugin-publish" }
+
+# dev.gradleplugins - Nokee Gradle Plugin Development Plugins
+java-gradle-plugin = { id = "dev.gradleplugins.java-gradle-plugin", version.ref = "nokee-gradle-plugin-dev" }
+
+# io.github.themrmilchmann.gradle.toolchainswitches:gradle-toolchain-switches - Gradle Toolchain Switches Plugin
+gradle-toolchain-switches = { id = "io.github.themrmilchmann.toolchain-switches", version.ref = "gradle-toolchain-switches" }
+
+# org.jetbrains.kotlinx.binary-compatibility-validator - binary-compatibility-validator
+binary-compatibility-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binary-compatibility-validator" }
+
+# org.jetbrains.kotlin - Kotlin
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-plugin-samwithreceiver = { id = "org.jetbrains.kotlin.plugin.sam.with.receiver", version.ref = "kotlin" }
