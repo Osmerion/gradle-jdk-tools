@@ -15,8 +15,11 @@
  */
 package com.osmerion.gradle.jdk.tools.plugins
 
+import com.osmerion.gradle.jdk.tools.tasks.JLink
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.plugins.JavaPluginExtension
+import org.gradle.jvm.toolchain.JavaToolchainService
 
 /**
  * The "entry-point" of the plugin.
@@ -26,6 +29,19 @@ import org.gradle.api.Project
  * @author  Leon Linhart
  */
 public class JdkToolsPlugin : Plugin<Project> {
-    // Does nothing because we only provide tasks
-    override fun apply(target: Project) {}
+
+    override fun apply(target: Project) {
+        target.pluginManager.withPlugin("java-base") {
+            val java = target.extensions.getByType(JavaPluginExtension::class.java)
+            val javaToolchains = target.extensions.getByType(JavaToolchainService::class.java)
+
+            target.tasks.withType(JLink::class.java) {
+                executable.convention(javaToolchains.compilerFor(java.toolchain).map {
+                    val file = it.executablePath.asFile
+                    file.resolveSibling(file.name.replaceBefore('.', "jlink")).absolutePath
+                })
+            }
+        }
+    }
+
 }
