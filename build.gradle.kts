@@ -61,7 +61,7 @@ gradlePlugin {
 
     plugins {
         register("jdkTools") {
-            id = "com.osmerion.jdk.tools"
+            id = "com.osmerion.jdk-tools"
             displayName = "JDK Tools Gradle Plugin"
             description = "A Gradle plugin that provides tasks for JDK tools that didn't make it into Gradle itself yet (such as JLink, JPackage, etc.)."
             tags.addAll("java", "jdk", "jlink", "jpackage")
