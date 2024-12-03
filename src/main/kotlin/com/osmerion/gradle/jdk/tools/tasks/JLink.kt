@@ -1,9 +1,10 @@
 package com.osmerion.gradle.jdk.tools.tasks
 
 import com.osmerion.gradle.jdk.tools.internal.finalizeAndGet
+import org.gradle.api.DefaultTask
+import org.gradle.api.file.ConfigurableFileCollection
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.file.FileSystemOperations
-import org.gradle.api.file.FileTree
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.provider.ListProperty
 import org.gradle.api.provider.Property
@@ -24,7 +25,26 @@ public open class JLink @Inject constructor(
     private val execOperations: ExecOperations,
     private val fsOperations: FileSystemOperations,
     objectFactory: ObjectFactory
-) : SourceTask() {
+) : DefaultTask() {
+
+    /**
+     * Configures the module path to use when linking the runtime image.
+     *
+     * @since   0.1.0
+     */
+    @get:Classpath
+    public val modulePath: ConfigurableFileCollection = objectFactory.fileCollection()
+
+    /**
+     * Configures the module path to use when linking the runtime image.
+     *
+     * @see [ConfigurableFileCollection.from]
+     *
+     * @since   0.1.0
+     */
+    public fun modulePath(vararg paths: Any) {
+        modulePath.from(paths)
+    }
 
     /**
      * Root modules to resolve in addition to the initial modules from the module path.
@@ -83,19 +103,15 @@ public open class JLink @Inject constructor(
     @get:OutputDirectory
     public val destinationDirectory: DirectoryProperty = objectFactory.directoryProperty()
 
-    @InputFiles
-    @Classpath
-    override fun getSource(): FileTree = super.getSource()
-
     @TaskAction
     protected fun linkRuntime() {
+        val modulePath = modulePath.files.toSet()
         val addModules = addModules.finalizeAndGet()
         val noHeaderFiles = noHeaderFiles.finalizeAndGet()
         val noManPages = noManPages.finalizeAndGet()
         val args = args.finalizeAndGet()
         val executable = executable.finalizeAndGet()
         val destinationDirectory = destinationDirectory.finalizeAndGet()
-        val sources = source.files.toSet()
 
         val deletionResult = fsOperations.delete {
             delete(destinationDirectory)
@@ -106,9 +122,9 @@ public open class JLink @Inject constructor(
         }
 
         val programArgs = buildList {
-            if (sources.isNotEmpty()) {
+            if (modulePath.isNotEmpty()) {
                 add("-p")
-                add(sources.joinToString(separator = File.pathSeparator, transform = File::getAbsolutePath))
+                add(modulePath.joinToString(separator = File.pathSeparator, transform = File::getAbsolutePath))
             }
 
             if (addModules.isNotEmpty()) {
