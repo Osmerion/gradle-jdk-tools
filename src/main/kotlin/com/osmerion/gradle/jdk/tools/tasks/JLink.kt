@@ -23,7 +23,9 @@ import org.gradle.api.file.FileSystemOperations
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.provider.ListProperty
 import org.gradle.api.provider.Property
+import org.gradle.api.provider.Provider
 import org.gradle.api.tasks.*
+import org.gradle.jvm.toolchain.JavaCompiler
 import org.gradle.process.ExecOperations
 import java.io.File
 import javax.inject.Inject
@@ -109,6 +111,21 @@ public open class JLink @Inject constructor(
     @get:InputFile
     @get:PathSensitive(PathSensitivity.NONE)
     public val executable: Property<String> = objectFactory.property(String::class.java)
+
+    /**
+     * Derives the path to the `jlink` executable from the given compiler tool.
+     *
+     * ```kotlin
+     * executable(project.javaToolchains.compilerFor {
+     *     languageVersion = JavaLanguageVersion.of(23)
+     * })
+     * ```
+     *
+     * @since   0.1.0
+     */
+    public fun executable(javaCompiler: Provider<JavaCompiler>) {
+        executable.set(javaCompiler.map { it.executablePath.asFile.absolutePath.replaceBefore('.', "jlink") })
+    }
 
     /**
      * The directory to which the runtime image will be written.
