@@ -16,6 +16,7 @@
 package com.osmerion.gradle.jdk.tools.plugins
 
 import com.osmerion.gradle.jdk.tools.tasks.JLink
+import com.osmerion.gradle.jdk.tools.tasks.JPackage
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPluginExtension
@@ -39,6 +40,13 @@ public class JdkToolsPlugin : Plugin<Project> {
                 executable.convention(javaToolchains.compilerFor(java.toolchain).map {
                     val file = it.executablePath.asFile
                     file.resolveSibling(file.name.replaceBefore('.', "jlink")).absolutePath
+                })
+            }
+
+            target.tasks.withType(JPackage::class.java) {
+                executable.convention(javaToolchains.compilerFor(java.toolchain).map {
+                    val file = it.executablePath.asFile
+                    file.resolveSibling(file.name.replaceBefore('.', "jpackage")).absolutePath
                 })
             }
         }
