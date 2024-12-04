@@ -1,0 +1,32 @@
+public final class com/osmerion/gradle/jdk/tools/plugins/JdkToolsPlugin : org/gradle/api/Plugin {
+	public fun <init> ()V
+	public synthetic fun apply (Ljava/lang/Object;)V
+	public fun apply (Lorg/gradle/api/Project;)V
+}
+
+public class com/osmerion/gradle/jdk/tools/tasks/JLink : org/gradle/api/DefaultTask {
+	public fun <init> (Lorg/gradle/process/ExecOperations;Lorg/gradle/api/file/FileSystemOperations;Lorg/gradle/api/model/ObjectFactory;)V
+	public final fun executable (Lorg/gradle/api/provider/Provider;)V
+	public final fun getAddModules ()Lorg/gradle/api/provider/ListProperty;
+	public final fun getArgs ()Lorg/gradle/api/provider/ListProperty;
+	public final fun getDestinationDirectory ()Lorg/gradle/api/file/DirectoryProperty;
+	public final fun getExecutable ()Lorg/gradle/api/provider/Property;
+	public final fun getModulePath ()Lorg/gradle/api/file/ConfigurableFileCollection;
+	public final fun getNoHeaderFiles ()Lorg/gradle/api/provider/Property;
+	public final fun getNoManPages ()Lorg/gradle/api/provider/Property;
+	protected final fun linkRuntime ()V
+	public final fun modulePath ([Ljava/lang/Object;)V
+}
+
+public class com/osmerion/gradle/jdk/tools/tasks/JPackage : org/gradle/api/DefaultTask {
+	public fun <init> (Lorg/gradle/process/ExecOperations;Lorg/gradle/api/file/FileSystemOperations;Lorg/gradle/api/model/ObjectFactory;)V
+	public final fun executable (Lorg/gradle/api/provider/Provider;)V
+	public final fun getAddModules ()Lorg/gradle/api/provider/ListProperty;
+	public final fun getArgs ()Lorg/gradle/api/provider/ListProperty;
+	public final fun getDestinationDirectory ()Lorg/gradle/api/file/DirectoryProperty;
+	public final fun getExecutable ()Lorg/gradle/api/provider/Property;
+	public final fun getModulePath ()Lorg/gradle/api/file/ConfigurableFileCollection;
+	public final fun modulePath ([Ljava/lang/Object;)V
+	protected final fun packageApplication ()V
+}
+
