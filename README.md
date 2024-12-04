@@ -4,7 +4,7 @@
 [![Maven Central](https://img.shields.io/maven-central/v/com.osmerion.gradle.jdk.tools/gradle-jdk-tools.svg?style=for-the-badge&label=Maven%20Central)](https://maven-badges.herokuapp.com/maven-central/com.osmerion.gradle.jdk.tools/gradle-jdk-tools)
 [![Gradle Plugin Portal](https://img.shields.io/maven-metadata/v.svg?style=for-the-badge&&label=Gradle%20Plugin%20Portal&logo=Gradle&metadataUrl=https%3A%2F%2Fplugins.gradle.org%2Fm2%2Fcom%2Fosmerion%2Fjdk%2Ftools%2Fcom.osmerion.jdk.tools.gradle.plugin%2Fmaven-metadata.xml)](https://plugins.gradle.org/plugin/com.osmerion.jdk-tools)
 ![Gradle](https://img.shields.io/badge/Gradle-8.0-green.svg?style=for-the-badge&color=1ba8cb&logo=Gradle)
-![Java](https://img.shields.io/badge/Java-8-green.svg?style=for-the-badge&color=b07219&logo=Java)
+![Java](https://img.shields.io/badge/Java-17-green.svg?style=for-the-badge&color=b07219&logo=Java)
 
 This plugin is a library of tasks for working with the JDK tools that did not
 make it into Gradle itself yet. As such, it provides the foundational building
