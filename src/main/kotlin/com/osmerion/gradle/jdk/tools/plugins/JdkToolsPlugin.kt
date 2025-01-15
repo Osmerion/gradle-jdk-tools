@@ -15,6 +15,8 @@
  */
 package com.osmerion.gradle.jdk.tools.plugins
 
+import com.osmerion.gradle.jdk.tools.internal.JLINK_EXECUTABLE_NAME
+import com.osmerion.gradle.jdk.tools.internal.JPACKAGE_EXECUTABLE_NAME
 import com.osmerion.gradle.jdk.tools.tasks.JLink
 import com.osmerion.gradle.jdk.tools.tasks.JPackage
 import org.gradle.api.Plugin
@@ -30,11 +32,6 @@ import org.gradle.jvm.toolchain.JavaToolchainService
  * @author  Leon Linhart
  */
 public class JdkToolsPlugin : Plugin<Project> {
-
-    internal companion object {
-        const val JLINK_EXECUTABLE_NAME = "jlink"
-        const val JPACKAGE_EXECUTABLE_NAME = "jpackage"
-    }
 
     override fun apply(target: Project) {
         target.pluginManager.withPlugin("java-base") {

@@ -15,8 +15,8 @@
  */
 package com.osmerion.gradle.jdk.tools.tasks
 
+import com.osmerion.gradle.jdk.tools.internal.JLINK_EXECUTABLE_NAME
 import com.osmerion.gradle.jdk.tools.internal.finalizeAndGet
-import com.osmerion.gradle.jdk.tools.plugins.JdkToolsPlugin
 import org.gradle.api.DefaultTask
 import org.gradle.api.file.ConfigurableFileCollection
 import org.gradle.api.file.DirectoryProperty
@@ -125,7 +125,7 @@ public open class JLink @Inject constructor(
      * @since   0.1.0
      */
     public fun executable(javaCompiler: Provider<JavaCompiler>) {
-        executable.set(javaCompiler.map { it.executablePath.asFile.absolutePath.replaceBefore('.', JdkToolsPlugin.JLINK_EXECUTABLE_NAME, JdkToolsPlugin.JLINK_EXECUTABLE_NAME) })
+        executable.set(javaCompiler.map { it.executablePath.asFile.absolutePath.replaceBefore('.', JLINK_EXECUTABLE_NAME, JLINK_EXECUTABLE_NAME) })
     }
 
     /**
