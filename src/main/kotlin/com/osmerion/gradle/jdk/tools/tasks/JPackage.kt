@@ -143,7 +143,7 @@ public open class JPackage @Inject constructor(
 
             addAll(args)
 
-            add("--output")
+            add("--dest")
             add(destinationDirectory.asFile.absolutePath)
         }
 
