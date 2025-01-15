@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Leon Linhart
+ * Copyright 2024-2025 Leon Linhart
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ class JPackageTest : AbstractFunctionalPluginTest() {
 
     @ParameterizedTest
     @MethodSource("provideGradleVersions")
-    fun testJLink(gradleVersion: CharSequence) {
+    fun testJPackage(gradleVersion: CharSequence) {
         writeSettingsFile()
 
         buildFile.writeText(
@@ -58,9 +58,9 @@ class JPackageTest : AbstractFunctionalPluginTest() {
                 }
             }
             
-            tasks.register<JLink>("jpackage") {
+            tasks.register<JPackage>("jpackage") {
                 destinationDirectory.set(layout.buildDirectory.dir("jpackage-image"))
-                addModules.add("java.base")
+                args.add("--help")
             }
             """.trimIndent()
         )
