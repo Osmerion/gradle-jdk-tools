@@ -1,13 +1,9 @@
-### 0.1.0
+### 0.2.0
 
-_Released 2024 Dec 04_
+_Released 2025 Jan 15_
 
-#### Overview
+#### Fixes
 
-This plugin is a library of tasks for working with the JDK tools that did not
-make it into Gradle itself yet. As such, it provides the foundational building
-blocks for working with `jlink`, `jpackage`, and more.
-
-The plugin does not register and tasks or extensions, or modifies the project in
-any way. If you are looking for an out-of-the-box solution, this is not the
-right plugin for you.
+- Fixed a bug that prevent the plugin from working as intended on non-Windows
+  platforms.
+- Correctly specify output location for the jpackage bundle.
