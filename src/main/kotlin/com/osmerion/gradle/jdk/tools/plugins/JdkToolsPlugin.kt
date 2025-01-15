@@ -31,6 +31,11 @@ import org.gradle.jvm.toolchain.JavaToolchainService
  */
 public class JdkToolsPlugin : Plugin<Project> {
 
+    internal companion object {
+        const val JLINK_EXECUTABLE_NAME = "jlink"
+        const val JPACKAGE_EXECUTABLE_NAME = "jpackage"
+    }
+
     override fun apply(target: Project) {
         target.pluginManager.withPlugin("java-base") {
             val java = target.extensions.getByType(JavaPluginExtension::class.java)
@@ -39,14 +44,14 @@ public class JdkToolsPlugin : Plugin<Project> {
             target.tasks.withType(JLink::class.java) {
                 executable.convention(javaToolchains.compilerFor(java.toolchain).map {
                     val file = it.executablePath.asFile
-                    file.resolveSibling(file.name.replaceBefore('.', "jlink")).absolutePath
+                    file.resolveSibling(file.name.replaceBefore('.', JLINK_EXECUTABLE_NAME, JLINK_EXECUTABLE_NAME)).absolutePath
                 })
             }
 
             target.tasks.withType(JPackage::class.java) {
                 executable.convention(javaToolchains.compilerFor(java.toolchain).map {
                     val file = it.executablePath.asFile
-                    file.resolveSibling(file.name.replaceBefore('.', "jpackage")).absolutePath
+                    file.resolveSibling(file.name.replaceBefore('.', JPACKAGE_EXECUTABLE_NAME, JPACKAGE_EXECUTABLE_NAME)).absolutePath
                 })
             }
         }
