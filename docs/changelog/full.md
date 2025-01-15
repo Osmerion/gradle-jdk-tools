@@ -1,6 +1,6 @@
 ### 0.1.0
 
-_Released 2024 Dev 04_
+_Released 2024 Dec 04_
 
 #### Overview
 
