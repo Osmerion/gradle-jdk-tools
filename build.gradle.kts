@@ -86,6 +86,7 @@ testing {
                 implementation(buildDeps.junit.jupiter.api)
                 implementation(buildDeps.junit.jupiter.params)
                 runtimeOnly(buildDeps.junit.jupiter.engine)
+                runtimeOnly(buildDeps.junit.platform.launcher)
             }
         }
 
