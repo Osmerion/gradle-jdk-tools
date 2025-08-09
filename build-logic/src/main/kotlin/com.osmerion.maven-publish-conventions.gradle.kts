@@ -41,7 +41,6 @@ publishing {
         pom {
             name = project.name
             url = "https://github.com/Osmerion/gradle-jdk-tools"
-            packaging = "jar"
 
             licenses {
                 license {
