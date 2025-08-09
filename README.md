@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/badge/license-Apache%202.0-yellowgreen.svg?style=for-the-badge&label=License)](https://github.com/Osmerion/gradle-jdk-tools/blob/master/LICENSE)
 [![Maven Central](https://img.shields.io/maven-central/v/com.osmerion.gradle.jdk.tools/gradle-jdk-tools.svg?style=for-the-badge&label=Maven%20Central)](https://maven-badges.herokuapp.com/maven-central/com.osmerion.gradle.jdk.tools/gradle-jdk-tools)
 [![Gradle Plugin Portal](https://img.shields.io/maven-metadata/v.svg?style=for-the-badge&label=Gradle%20Plugin%20Portal&logo=Gradle&metadataUrl=https%3A%2F%2Fplugins.gradle.org%2Fm2%2Fcom%2Fosmerion%2Fjdk-tools%2Fcom.osmerion.jdk-tools.gradle.plugin%2Fmaven-metadata.xml)](https://plugins.gradle.org/plugin/com.osmerion.jdk-tools)
-![Gradle](https://img.shields.io/badge/Gradle-9.0-green.svg?style=for-the-badge&color=1ba8cb&logo=Gradle)
+![Gradle](https://img.shields.io/badge/Gradle-9.0.0-green.svg?style=for-the-badge&color=1ba8cb&logo=Gradle)
 ![Java](https://img.shields.io/badge/Java-17-green.svg?style=for-the-badge&color=b07219&logo=Java)
 
 This plugin is a library of tasks for working with the JDK tools that did not
