@@ -21,7 +21,6 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 plugins {
     alias(buildDeps.plugins.binary.compatibility.validator)
     alias(buildDeps.plugins.gradle.toolchain.switches)
-    alias(buildDeps.plugins.java.gradle.plugin)
     alias(buildDeps.plugins.kotlin.jvm)
     alias(buildDeps.plugins.kotlin.plugin.samwithreceiver)
     alias(buildDeps.plugins.plugin.publish)
@@ -42,20 +41,16 @@ kotlin {
     explicitApi()
 
     compilerOptions {
-        apiVersion = KotlinVersion.KOTLIN_1_8
-        languageVersion = KotlinVersion.KOTLIN_1_8
+        apiVersion = KotlinVersion.KOTLIN_2_2
+        languageVersion = KotlinVersion.KOTLIN_2_2
 
-        jvmTarget = JvmTarget.JVM_1_8
+        jvmTarget = JvmTarget.JVM_17
 
-        freeCompilerArgs.add("-Xjdk-release=1.8")
+        freeCompilerArgs.add("-Xjdk-release=17")
     }
 }
 
 gradlePlugin {
-    compatibility {
-        minimumGradleVersion = "8.0"
-    }
-
     website = "https://github.com/Osmerion/gradle-jdk-tools"
     vcsUrl = "https://github.com/Osmerion/gradle-jdk-tools.git"
 
@@ -126,13 +121,13 @@ testing {
 
 tasks {
     withType<JavaCompile>().configureEach {
-        options.release = 8
+        options.release = 17
     }
 
     withType<Test>().configureEach {
         @OptIn(ExperimentalToolchainSwitchesApi::class)
         javaLauncher.set(inferLauncher(default = project.javaToolchains.launcherFor {
-            languageVersion = JavaLanguageVersion.of(8)
+            languageVersion = JavaLanguageVersion.of(17)
         }))
 
         /*
@@ -190,4 +185,11 @@ publishing {
 
 dependencies {
     compileOnlyApi(kotlin("stdlib"))
+
+    compileOnly(libs.gradle.api) {
+        capabilities {
+            // https://github.com/gradle/gradle/issues/29483
+            requireCapability("org.gradle.experimental:gradle-public-api-internal")
+        }
+    }
 }

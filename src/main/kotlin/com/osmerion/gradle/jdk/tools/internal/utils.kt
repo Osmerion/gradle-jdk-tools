@@ -18,12 +18,12 @@ package com.osmerion.gradle.jdk.tools.internal
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.ListProperty
 
-internal fun <T> Property<T>.finalizeAndGet(): T {
+internal fun <T : Any> Property<T>.finalizeAndGet(): T {
     finalizeValue()
     return get()
 }
 
-internal fun <T> ListProperty<T>.finalizeAndGet(): List<T> {
+internal fun <T : Any> ListProperty<T>.finalizeAndGet(): List<T> {
     finalizeValue()
     return get()
 }
