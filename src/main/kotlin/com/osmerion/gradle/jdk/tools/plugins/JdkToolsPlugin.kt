@@ -23,6 +23,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.jvm.toolchain.JavaToolchainService
+import org.gradle.util.GradleVersion
 
 /**
  * The "entry-point" of the plugin.
@@ -34,6 +35,10 @@ import org.gradle.jvm.toolchain.JavaToolchainService
 public class JdkToolsPlugin : Plugin<Project> {
 
     override fun apply(target: Project) {
+        if (GradleVersion.current() < GradleVersion.version("9.0.0")) {
+            throw IllegalStateException("This plugin requires Gradle 9.0.0 or later")
+        }
+
         target.pluginManager.withPlugin("java-base") {
             val java = target.extensions.getByType(JavaPluginExtension::class.java)
             val javaToolchains = target.extensions.getByType(JavaToolchainService::class.java)
