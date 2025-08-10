@@ -185,8 +185,7 @@ publishing {
 
 dependencies {
     compileOnlyApi(kotlin("stdlib"))
-
-    compileOnly(libs.gradle.api) {
+    compileOnlyApi(libs.gradle.api) {
         capabilities {
             // https://github.com/gradle/gradle/issues/29483
             requireCapability("org.gradle.experimental:gradle-public-api-internal")
