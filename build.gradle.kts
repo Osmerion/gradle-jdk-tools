@@ -163,19 +163,8 @@ tasks {
     }
 }
 
-val emptyJar = tasks.register<Jar>("emptyJar") {
-    destinationDirectory = layout.buildDirectory.dir("emptyJar")
-    archiveBaseName = "com.osmerion.jdk.tools.gradle.plugin"
-}
-
 publishing {
     publications.withType<MavenPublication>().configureEach {
-        if (name == "jdkToolsPluginMarkerMaven") {
-            artifact(emptyJar)
-            artifact(emptyJar) { classifier = "javadoc" }
-            artifact(emptyJar) { classifier = "sources" }
-        }
-
         pom {
             name = "JDK Tools Gradle Plugin"
             description = "A Gradle plugin that provides tasks for JDK tools that didn't make it into Gradle itself yet (such as JLink, JPackage, etc.)."
