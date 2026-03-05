@@ -15,6 +15,7 @@
  */
 import io.github.themrmilchmann.gradle.toolchainswitches.ExperimentalToolchainSwitchesApi
 import io.github.themrmilchmann.gradle.toolchainswitches.inferLauncher
+import org.gradle.plugin.compatibility.compatibility
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 
@@ -62,6 +63,13 @@ gradlePlugin {
             tags.addAll("java", "jdk", "jlink", "jpackage")
 
             implementationClass = "com.osmerion.gradle.jdk.tools.plugins.JdkToolsPlugin"
+
+            @Suppress("UnstableApiUsage")
+            compatibility {
+                features {
+                    configurationCache = true
+                }
+            }
         }
     }
 }
